@@ -7,7 +7,7 @@ pipeline {
         stage("build jar") {
             steps {
 		    
-                echo "building application version"
+                echo "building app version"
 		sh 'mvn package'
 		    
 	    }                        
