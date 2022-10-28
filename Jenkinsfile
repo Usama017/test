@@ -46,12 +46,13 @@ pipeline {
 	stage('git version update') {
             steps {
                 script {
-                                   
+                        
+			withCredentials([usernamePassword(credentialsId: 'github-token', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh 'git config --global user.email "iam_usama017@outlook.com"'
                         sh 'git config --global user.name "Usama_017"'
 			
 			
-                        sh "git remote set-url origin https://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@github.com/Usama017/test.git"
+			sh "git remote set-url origin https://${USER}:${PASS}@github.com/Usama017/test.git"
 			sh 'git init'
                         sh 'git add .'
                         sh "git commit -m 'ci: version bump'"
@@ -59,6 +60,7 @@ pipeline {
 		  }
 	    }
 	}
+}
         stage('deploy') {
             steps {
 		    script {
@@ -70,3 +72,4 @@ pipeline {
      }
    }
   }
+}
