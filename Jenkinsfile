@@ -26,15 +26,16 @@ pipeline {
 	    
         stage("build jar") {
             steps {
-		    
+		    script {  
                 echo "building applic version"
 		sh 'mvn clean package'
 		    
 	    }                        
           }
+}
     	stage("build image") {
             steps {
-		    
+		    script {    
                 echo "building docker image"
 		withCredentials([usernamePassword(credentialsId: 'docker-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
 			  
@@ -63,12 +64,13 @@ pipeline {
 	    }
         stage("deploy") {
             steps {
-		    
+		    script {
                     echo "deploying the application version"
                     
             
-        }   
-    }
+         }   
+       }
+     }
+   }
   }
-}
 }
