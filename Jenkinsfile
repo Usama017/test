@@ -71,3 +71,4 @@ stage('git version update') {
     }
   }
 }
+}
