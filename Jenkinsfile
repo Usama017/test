@@ -55,7 +55,8 @@ pipeline {
 			sh 'git init'
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
-                        sh 'git push origin main'
+			sh 'git checkout -b master'
+                        sh 'git push origin master'
 		  }
 	    }
 	}
