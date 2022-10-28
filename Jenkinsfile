@@ -48,8 +48,7 @@ pipeline {
                 script {
                         
 			withCredentials([usernamePassword(credentialsId: 'github-token', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh 'git config --global user.email "iam_usama017@outlook.com"'
-                        sh 'git config --global user.name "Usama_017"'
+                        
 			
 			
 			sh "git remote set-url origin https://${USER}:${PASS}@github.com/Usama017/test.git"
