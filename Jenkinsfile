@@ -54,7 +54,7 @@ pipeline {
                         sh "git remote set-url origin https://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@github.com/Usama017/test.git"
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
-                        sh 'git push origin HEAD:MASTER'
+                        sh 'git push origin HEAD:master'
 		  }
 	    }
 	}
