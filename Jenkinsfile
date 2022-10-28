@@ -3,8 +3,7 @@ pipeline {
     tools {
 	maven 'maven'
 }	
-    stages {
-	   
+    stages {   
 	stage('increment version') {
             steps {
                 script {
@@ -18,26 +17,22 @@ pipeline {
                 }
             }
         }
-
-        
-
-   
+  
 	    
-	    
-        stage("build jar") {
+        stage('build jar') {
             steps {
-		    script {  
-                echo "building applic version"
-		sh 'mvn clean package'
+		script {  
+                  echo "building applic version"
+		  sh 'mvn clean package'
 		    
-	    }                        
-          }
-}
-    	stage("build image") {
+         }                        
+      }
+   }
+    	stage('build image') {
             steps {
-		    script {    
-                echo "building docker image"
-		withCredentials([usernamePassword(credentialsId: 'docker-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+		 script {    
+                    echo "building docker image"
+		    withCredentials([usernamePassword(credentialsId: 'docker-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
 			  
 		    sh 'docker build -t usama07/demo-app:${IMAGE_NAME} .'
 		    sh "docker login -u $USER -p $PASS"
@@ -45,13 +40,14 @@ pipeline {
 		                     
             }
         }
+   }
 }
 	    
 	stage('git version update') {
-            	steps {
+            steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        // git config here for the first time run
+                        
                         sh 'git config --global user.email "iam_usama017@outlook.com"'
                         sh 'git config --global user.name "Usama_017"'
 
@@ -62,7 +58,8 @@ pipeline {
 		    }
 		}
 	    }
-        stage("deploy") {
+	}
+        stage('deploy') {
             steps {
 		    script {
                     echo "deploying the application version"
@@ -73,5 +70,3 @@ pipeline {
      }
    }
   }
- }
-}
