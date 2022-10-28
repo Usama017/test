@@ -6,17 +6,18 @@ pipeline {
     stages {
 	   
 	stage("ïncrement version") {
+		script{
 		steps {
 				echo 'incrementing app version'
-				sh 'mvn build-helper:parse-version versions:set 			
-				  -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} 			
+				sh 'mvn build-helper:parse-version versions:set \			
+				  -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \			
 					versions:commit' 
 				def match = readFile('pom.xml') =~ '<version>(.+)</version>'   
 				env.IMAGE_NAME = match[0][1]      
 	    
 		}
-	}
-	    
+	  }
+	}    
 	    
 	    
         stage("build jar") {
