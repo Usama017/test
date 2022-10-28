@@ -49,8 +49,9 @@ pipeline {
                                    
                         sh 'git config --global user.email "iam_usama017@outlook.com"'
                         sh 'git config --global user.name "Usama_017"'
-
-                        sh "git remote set-url origin https://$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@github.com/Usama017/test.git"
+			
+			sh "git remote add origin https://github.com/Usama017/test.git"
+                        sh "git remote set-url origin https://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@github.com/Usama017/test.git"
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:MASTER'
