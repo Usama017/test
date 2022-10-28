@@ -46,8 +46,8 @@ pipeline {
         }
 }
 	    
-stage('git version update') {
-            steps {
+	stage('git version update') {
+            	steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         // git config here for the first time run
@@ -70,5 +70,6 @@ stage('git version update') {
         }   
     }
   }
+}
 }
 }
