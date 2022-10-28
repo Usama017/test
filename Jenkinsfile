@@ -22,7 +22,7 @@ pipeline {
         stage('build jar') {
             steps {
 		script {  
-                  echo "building applic version"
+                  echo "building applicat version"
 		  sh 'mvn clean package'
 		    
          }                        
