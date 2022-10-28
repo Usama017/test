@@ -51,12 +51,12 @@ pipeline {
                         sh 'git config --global user.name "Usama_017"'
 			
 			
-                        sh "git remote set-url origin https://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@github.com/Usama017/test.git"
+                        sh "git remote set-url origin https://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@github.com/Usama017/test.git"
 			sh 'git init'
                         sh 'git add .'
-                        sh 'git commit -m "ci: version bump"'
+                        sh "git commit -m 'ci: version bump'"
 			sh 'git checkout -b master'
-                        sh 'git push origin master'
+                        sh 'git push origin HEAD:master'
 		  }
 	    }
 	}
